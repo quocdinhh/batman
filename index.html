@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batman Portfolio | Fullstack Developer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Scroll driver -->
+    <div class="scroll-wrapper">
+        <div class="scroll-height"></div>
+    </div>
+
+    <!-- Fixed viewport -->
+    <div class="viewport">
+
+        <!-- SKY layer (parallax slow) -->
+        <div class="layer" id="sky-layer">
+            <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+                <!-- Stars -->
+                <circle cx="100" cy="80" r="1.5" fill="#fff" opacity="0.6" />
+                <circle cx="250" cy="140" r="1" fill="#fff" opacity="0.4" />
+                <circle cx="400" cy="60" r="1.8" fill="#fff" opacity="0.7" />
+                <circle cx="550" cy="200" r="1.2" fill="#fff" opacity="0.5" />
+                <circle cx="700" cy="90" r="1" fill="#fff" opacity="0.3" />
+                <circle cx="900" cy="150" r="1.6" fill="#fff" opacity="0.6" />
+                <circle cx="1050" cy="50" r="1.3" fill="#fff" opacity="0.5" />
+                <circle cx="1200" cy="180" r="1" fill="#fff" opacity="0.4" />
+                <circle cx="1350" cy="100" r="1.8" fill="#fff" opacity="0.7" />
+                <circle cx="1500" cy="70" r="1.2" fill="#fff" opacity="0.5" />
+                <circle cx="180" cy="220" r="1" fill="#fff" opacity="0.3" />
+                <circle cx="630" cy="250" r="1.5" fill="#fff" opacity="0.4" />
+                <circle cx="1100" cy="230" r="1" fill="#fff" opacity="0.6" />
+                <!-- Moon -->
+                <circle cx="1300" cy="120" r="55" fill="#fdfcf0" opacity="0.95" />
+                <circle cx="1315" cy="110" r="50" fill="#0b101b" opacity="0.3" />
+
+                <!-- Lightning bolts (hidden, animated by JS) -->
+                <g id="lightning-1" opacity="0">
+                    <polyline points="500,0 480,120 510,130 470,280 505,290 460,450" fill="none" stroke="#e0e7ff"
+                        stroke-width="3" stroke-linecap="round" />
+                    <polyline points="500,0 480,120 510,130 470,280 505,290 460,450" fill="none" stroke="#fff"
+                        stroke-width="1.5" stroke-linecap="round" />
+                    <!-- Branch -->
+                    <polyline points="510,130 540,200 525,210" fill="none" stroke="#c7d2fe" stroke-width="2"
+                        stroke-linecap="round" />
+                </g>
+                <g id="lightning-2" opacity="0">
+                    <polyline points="1050,0 1030,100 1060,115 1020,250 1055,260 1010,400" fill="none" stroke="#e0e7ff"
+                        stroke-width="3" stroke-linecap="round" />
+                    <polyline points="1050,0 1030,100 1060,115 1020,250 1055,260 1010,400" fill="none" stroke="#fff"
+                        stroke-width="1.5" stroke-linecap="round" />
+                    <polyline points="1060,115 1090,180 1075,190" fill="none" stroke="#c7d2fe" stroke-width="2"
+                        stroke-linecap="round" />
+                </g>
+            </svg>
+
+            <!-- Sky flash overlay -->
+            <div id="sky-flash"></div>
+        </div>
+
+        <!-- BUILDINGS layer (parallax fast) -->
+        <div class="layer" id="buildings-layer">
+            <svg id="buildings-svg" viewBox="0 0 6000 900" preserveAspectRatio="xMinYMax meet">
+                <!-- Building cluster 1 -->
+                <rect x="50" y="380" width="120" height="520" fill="#111827" />
+                <rect x="70" y="420" width="15" height="20" rx="2" fill="#f59e0b" opacity="0.5" />
+                <rect x="100" y="420" width="15" height="20" rx="2" fill="#f59e0b" opacity="0.3" />
+                <rect x="70" y="460" width="15" height="20" rx="2" fill="#f59e0b" opacity="0.7" />
+                <rect x="130" y="460" width="15" height="20" rx="2" fill="#f59e0b" opacity="0.4" />
+                <rect x="70" y="500" width="15" height="20" rx="2" fill="#f59e0b" opacity="0.2" />
+                <rect x="100" y="500" width="15" height="20" rx="2" fill="#f59e0b" opacity="0.6" />
+
+                <rect x="200" y="280" width="100" height="620" fill="#1e293b" />
+                <rect x="220" y="310" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.6" />
+                <rect x="250" y="310" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.4" />
+                <rect x="270" y="310" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.8" />
+                <rect x="220" y="350" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.3" />
+                <rect x="250" y="380" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.5" />
+                <rect x="270" y="350" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.7" />
+                <!-- Antenna -->
+                <rect x="245" y="250" width="6" height="30" fill="#1e293b" />
+                <circle cx="248" cy="248" r="4" fill="#ef4444" opacity="0.8">
+                    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite" />
+                </circle>
+
+                <rect x="340" y="450" width="80" height="450" fill="#0f172a" />
+                <rect x="355" y="480" width="10" height="15" rx="2" fill="#f59e0b" opacity="0.4" />
+                <rect x="375" y="480" width="10" height="15" rx="2" fill="#f59e0b" opacity="0.6" />
+                <rect x="395" y="520" width="10" height="15" rx="2" fill="#f59e0b" opacity="0.3" />
+
+                <!-- Building cluster 2 -->
+                <rect x="500" y="320" width="140" height="580" fill="#111827" />
+                <rect x="520" y="350" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.5" />
+                <rect x="550" y="350" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.7" />
+                <rect x="580" y="390" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.4" />
+                <rect x="610" y="350" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.6" />
+                <rect x="520" y="430" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.8" />
+
+                <rect x="680" y="220" width="110" height="680" fill="#1e293b" />
+                <!-- Spire -->
+                <polygon points="735,180 720,220 750,220" fill="#1e293b" />
+                <rect x="700" y="250" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.6" />
+                <rect x="730" y="290" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.4" />
+                <rect x="760" y="250" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.7" />
+                <rect x="700" y="330" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.3" />
+                <rect x="760" y="330" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.5" />
+
+                <rect x="830" y="420" width="90" height="480" fill="#0f172a" />
+                <rect x="850" y="450" width="10" height="15" rx="2" fill="#f59e0b" opacity="0.5" />
+                <rect x="880" y="490" width="10" height="15" rx="2" fill="#f59e0b" opacity="0.3" />
+
+                <!-- Building cluster 3 -->
+                <rect x="1000" y="350" width="130" height="550" fill="#111827" />
+                <rect x="1020" y="380" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.6" />
+                <rect x="1060" y="380" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.4" />
+                <rect x="1100" y="420" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.7" />
+
+                <rect x="1180" y="250" width="120" height="650" fill="#1e293b" />
+                <rect x="1200" y="280" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.5" />
+                <rect x="1240" y="320" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.8" />
+                <rect x="1270" y="280" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.3" />
+                <!-- Antenna -->
+                <rect x="1237" y="220" width="5" height="30" fill="#1e293b" />
+                <circle cx="1239" cy="218" r="3" fill="#ef4444" opacity="0.8">
+                    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="3s" repeatCount="indefinite" />
+                </circle>
+
+                <rect x="1350" y="400" width="100" height="500" fill="#0f172a" />
+                <rect x="1370" y="430" width="10" height="15" rx="2" fill="#f59e0b" opacity="0.4" />
+                <rect x="1400" y="470" width="10" height="15" rx="2" fill="#f59e0b" opacity="0.6" />
+
+                <!-- Building cluster 4 -->
+                <rect x="1530" y="300" width="110" height="600" fill="#111827" />
+                <rect x="1550" y="330" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.7" />
+                <rect x="1590" y="370" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.4" />
+
+                <rect x="1700" y="360" width="140" height="540" fill="#1e293b" />
+                <rect x="1720" y="390" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.5" />
+                <rect x="1760" y="390" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.6" />
+                <rect x="1800" y="430" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.3" />
+
+                <rect x="1900" y="200" width="100" height="700" fill="#0f172a" />
+                <polygon points="1950,160 1900,200 2000,200" fill="#0f172a" />
+                <rect x="1920" y="240" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.8" />
+                <rect x="1950" y="280" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.4" />
+                <rect x="1970" y="240" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.6" />
+
+                <!-- Building cluster 5 -->
+                <rect x="2100" y="380" width="120" height="520" fill="#111827" />
+                <rect x="2120" y="410" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.5" />
+                <rect x="2160" y="450" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.7" />
+
+                <rect x="2280" y="280" width="130" height="620" fill="#1e293b" />
+                <rect x="2300" y="310" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.6" />
+                <rect x="2340" y="350" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.4" />
+                <rect x="2380" y="310" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.8" />
+
+                <rect x="2460" y="420" width="90" height="480" fill="#0f172a" />
+
+                <!-- Building cluster 6 -->
+                <rect x="2620" y="320" width="140" height="580" fill="#111827" />
+                <rect x="2640" y="350" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.5" />
+                <rect x="2680" y="390" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.7" />
+                <rect x="2720" y="350" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.4" />
+
+                <rect x="2800" y="250" width="110" height="650" fill="#1e293b" />
+                <polygon points="2855,210 2800,250 2910,250" fill="#1e293b" />
+                <rect x="2820" y="280" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.6" />
+                <rect x="2860" y="320" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.8" />
+                <rect x="2880" y="280" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.3" />
+                <rect x="2857" y="180" width="5" height="30" fill="#1e293b" />
+                <circle cx="2859" cy="178" r="3" fill="#ef4444" opacity="0.8">
+                    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2.5s" repeatCount="indefinite" />
+                </circle>
+
+                <rect x="2960" y="400" width="100" height="500" fill="#0f172a" />
+                <rect x="2980" y="430" width="10" height="15" rx="2" fill="#f59e0b" opacity="0.4" />
+
+                <!-- Building cluster 7 -->
+                <rect x="3140" y="350" width="120" height="550" fill="#111827" />
+                <rect x="3160" y="380" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.6" />
+                <rect x="3200" y="420" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.4" />
+
+                <rect x="3310" y="300" width="100" height="600" fill="#1e293b" />
+                <rect x="3330" y="330" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.7" />
+                <rect x="3370" y="370" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.5" />
+
+                <rect x="3470" y="380" width="130" height="520" fill="#0f172a" />
+                <rect x="3490" y="410" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.3" />
+                <rect x="3540" y="450" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.6" />
+
+                <!-- Building cluster 8 -->
+                <rect x="3680" y="260" width="140" height="640" fill="#111827" />
+                <rect x="3700" y="290" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.5" />
+                <rect x="3740" y="330" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.7" />
+                <rect x="3780" y="290" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.4" />
+
+                <rect x="3870" y="400" width="100" height="500" fill="#1e293b" />
+                <rect x="3890" y="430" width="10" height="15" rx="2" fill="#f59e0b" opacity="0.6" />
+                <rect x="3930" y="470" width="10" height="15" rx="2" fill="#f59e0b" opacity="0.3" />
+
+                <rect x="4030" y="320" width="110" height="580" fill="#0f172a" />
+                <polygon points="4085,280 4030,320 4140,320" fill="#0f172a" />
+                <rect x="4050" y="350" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.8" />
+                <rect x="4090" y="390" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.4" />
+
+                <!-- Building cluster 9 -->
+                <rect x="4220" y="380" width="120" height="520" fill="#111827" />
+                <rect x="4400" y="300" width="130" height="600" fill="#1e293b" />
+                <rect x="4420" y="330" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.6" />
+                <rect x="4470" y="370" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.5" />
+                <rect x="4580" y="420" width="90" height="480" fill="#0f172a" />
+
+                <!-- Building cluster 10 -->
+                <rect x="4750" y="280" width="140" height="620" fill="#111827" />
+                <rect x="4770" y="310" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.7" />
+                <rect x="4810" y="350" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.4" />
+                <rect x="4850" y="310" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.6" />
+
+                <rect x="4950" y="350" width="110" height="550" fill="#1e293b" />
+                <rect x="4970" y="380" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.5" />
+                <rect x="5020" y="420" width="12" height="18" rx="2" fill="#f59e0b" opacity="0.8" />
+
+                <rect x="5120" y="400" width="100" height="500" fill="#0f172a" />
+                <rect x="5140" y="430" width="10" height="15" rx="2" fill="#f59e0b" opacity="0.4" />
+
+                <!-- Extending buildings -->
+                <rect x="5300" y="300" width="120" height="600" fill="#111827" />
+                <rect x="5480" y="350" width="140" height="550" fill="#1e293b" />
+                <rect x="5680" y="280" width="100" height="620" fill="#0f172a" />
+                <rect x="5840" y="400" width="160" height="500" fill="#111827" />
+
+                <!-- Ground / Road -->
+                <rect x="0" y="850" width="6000" height="50" fill="#1a1a2e" />
+                <rect x="0" y="870" width="6000" height="4" fill="#f59e0b" opacity="0.15" />
+            </svg>
+        </div>
+
+        <!-- GROUND layer -->
+        <div id="ground-layer"></div>
+
+        <!-- Batman Walking (intro + standing) -->
+        <div id="batman-container">
+            <svg id="batman-walk" viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Entire body group for bobbing -->
+                <g id="bat-body-group">
+                    <!-- Cape (behind everything) -->
+                    <g id="bat-cape-group" style="transform-origin: 60px 52px;">
+                        <path id="bat-cape" d="M30 52 Q 60 40 90 52 L 105 170 Q 85 180 60 172 Q 35 180 15 170 Z"
+                            fill="#111" stroke="#1a1a1a" stroke-width="0.5" />
+                    </g>
+
+                    <!-- LEFT ARM (behind body) -->
+                    <g id="bat-arm-left" style="transform-origin: 38px 58px;">
+                        <rect x="28" y="56" width="14" height="32" rx="6" fill="#111" />
+                        <g id="bat-forearm-left" style="transform-origin: 33px 86px;">
+                            <rect x="28" y="84" width="13" height="24" rx="5" fill="#0d0d0d" />
+                            <path d="M29 95 L25 85 L31 90 L27 80 L34 88" fill="#222" />
+                        </g>
+                    </g>
+
+                    <!-- LEFT LEG (behind body) -->
+                    <g id="bat-leg-left" style="transform-origin: 48px 118px;">
+                        <rect x="40" y="116" width="16" height="32" rx="5" fill="#111" />
+                        <g id="bat-shin-left" style="transform-origin: 48px 146px;">
+                            <rect x="40" y="144" width="15" height="30" rx="4" fill="#0d0d0d" />
+                            <path d="M38 172 L56 172 L58 180 L36 180 Z" fill="#080808" />
+                        </g>
+                    </g>
+
+                    <!-- Body / Torso -->
+                    <g id="bat-torso">
+                        <path d="M40 52 L 80 52 L 84 118 L 36 118 Z" fill="#1a1a1a" />
+                        <path d="M50 60 L60 52 L70 60" fill="none" stroke="#222" stroke-width="0.5" />
+                        <path d="M48 70 Q53 62 60 70 Q67 62 72 70 L68 80 Q64 74 60 74 Q56 74 52 80 Z" fill="#f59e0b"
+                            opacity="0.9" />
+                        <rect x="38" y="110" width="44" height="10" rx="3" fill="#f59e0b" />
+                        <rect x="52" y="108" width="16" height="14" rx="2" fill="#d97706" />
+                        <rect x="40" y="111" width="8" height="7" rx="1.5" fill="#b45309" opacity="0.6" />
+                        <rect x="72" y="111" width="8" height="7" rx="1.5" fill="#b45309" opacity="0.6" />
+                    </g>
+
+                    <!-- RIGHT LEG (in front of body) -->
+                    <g id="bat-leg-right" style="transform-origin: 72px 118px;">
+                        <rect x="64" y="116" width="16" height="32" rx="5" fill="#111" />
+                        <g id="bat-shin-right" style="transform-origin: 72px 146px;">
+                            <rect x="65" y="144" width="15" height="30" rx="4" fill="#0d0d0d" />
+                            <path d="M62 172 L80 172 L82 180 L60 180 Z" fill="#080808" />
+                        </g>
+                    </g>
+
+                    <!-- RIGHT ARM (in front of body) -->
+                    <g id="bat-arm-right" style="transform-origin: 82px 58px;">
+                        <rect x="78" y="56" width="14" height="32" rx="6" fill="#111" />
+                        <g id="bat-forearm-right" style="transform-origin: 87px 86px;">
+                            <rect x="79" y="84" width="13" height="24" rx="5" fill="#0d0d0d" />
+                            <path d="M91 95 L95 85 L89 90 L93 80 L86 88" fill="#222" />
+                        </g>
+                    </g>
+
+                    <!-- Head -->
+                    <g id="bat-head-group">
+                        <path id="bat-head" d="M47 22 L 50 40 L 70 40 L 73 22 L 80 56 Q 60 62 40 56 Z" fill="#000" />
+                        <polygon points="47,22 43,2 52,28" fill="#000" />
+                        <polygon points="73,22 77,2 68,28" fill="#000" />
+                        <path d="M46 44 Q 60 50 74 44" fill="none" stroke="#111" stroke-width="1" />
+                        <path d="M50 38 L 55 34 L 58 38" fill="none" stroke="#fff" stroke-width="2">
+                            <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite" />
+                        </path>
+                        <path d="M62 38 L 65 34 L 70 38" fill="none" stroke="#fff" stroke-width="2">
+                            <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite" />
+                        </path>
+                    </g>
+                </g>
+            </svg>
+        </div>
+
+
+        <!-- Batmobile (hidden initially) -->
+        <div id="batmobile-container">
+            <svg id="batmobile" viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg">
+                <!-- Body -->
+                <path
+                    d="M40 90 L 60 40 L 160 25 L 260 25 L 340 40 L 370 70 L 375 90 Q 380 110 350 110 L 50 110 Q 20 110 40 90 Z"
+                    fill="#0a0a0a" stroke="#1a1a1a" stroke-width="1" />
+                <!-- Windshield -->
+                <path d="M145 30 L 120 70 L 190 70 L 195 30 Z" fill="#1a2332" stroke="#2d4a6f" stroke-width="1"
+                    opacity="0.8" />
+                <!-- Cockpit canopy -->
+                <path d="M195 30 L 190 70 L 270 70 L 260 30 Z" fill="#111" stroke="#2d4a6f" stroke-width="0.5"
+                    opacity="0.6" />
+                <!-- Batman silhouette in cockpit -->
+                <g id="batman-in-car" opacity="0">
+                    <!-- Head -->
+                    <path d="M220 32 L222 42 L238 42 L240 32 L245 55 Q230 58 215 55 Z" fill="#000" />
+                    <polygon points="220,32 218,20 224,36" fill="#000" />
+                    <polygon points="240,32 242,20 236,36" fill="#000" />
+                    <!-- Eyes -->
+                    <path d="M224 44 L227 42 L229 44" fill="none" stroke="#fff" stroke-width="0.8" />
+                    <path d="M232 44 L235 42 L237 44" fill="none" stroke="#fff" stroke-width="0.8" />
+                    <!-- Shoulders -->
+                    <rect x="210" y="55" width="40" height="15" rx="3" fill="#0a0a0a" />
+                </g>
+                <!-- Headlight definitions -->
+                <defs>
+                    <radialGradient id="headlight-beam" cx="100%" cy="50%" r="120%" fx="100%" fy="50%">
+                        <stop offset="0%" stop-color="#fff7cc" stop-opacity="0.7" />
+                        <stop offset="25%" stop-color="#fde68a" stop-opacity="0.4" />
+                        <stop offset="55%" stop-color="#f59e0b" stop-opacity="0.15" />
+                        <stop offset="100%" stop-color="#f59e0b" stop-opacity="0" />
+                    </radialGradient>
+                    <linearGradient id="headlight-cone" x1="100%" y1="0%" x2="0%" y2="0%">
+                        <stop offset="0%" stop-color="#fffbeb" stop-opacity="0.8" />
+                        <stop offset="15%" stop-color="#fde68a" stop-opacity="0.4" />
+                        <stop offset="40%" stop-color="#f59e0b" stop-opacity="0.12" />
+                        <stop offset="100%" stop-color="#f59e0b" stop-opacity="0" />
+                    </linearGradient>
+                    <radialGradient id="ground-glow" cx="70%" cy="50%" r="80%">
+                        <stop offset="0%" stop-color="#fde68a" stop-opacity="0.35" />
+                        <stop offset="50%" stop-color="#f59e0b" stop-opacity="0.12" />
+                        <stop offset="100%" stop-color="#f59e0b" stop-opacity="0" />
+                    </radialGradient>
+                </defs>
+
+                <!-- Headlight beams (projecting right from front) -->
+                <g id="headlight-beams">
+                    <!-- Ground reflection -->
+                    <ellipse cx="-95" cy="88" rx="150" ry="25" fill="url(#ground-glow)" opacity="0.8" />
+                    <!-- Wide ambient glow -->
+                    <ellipse cx="-90" cy="85" rx="120" ry="22" fill="url(#headlight-beam)" opacity="0.7" />
+                    <!-- Main beam cone (wide) -->
+                    <polygon points="42,68 -180,30 -180,95 42,82" fill="url(#headlight-cone)" opacity="0.55" />
+                    <!-- Main beam cone (focused) -->
+                    <polygon points="42,74 -160,60 -160,125 42,88" fill="url(#headlight-cone)" opacity="0.4" />
+                    <!-- Volumetric scatter -->
+                    <ellipse cx="-30" cy="78" rx="80" ry="22" fill="#fde68a" opacity="0.06" />
+                    <!-- Light dust -->
+                    <circle cx="10" cy="76" r="1.5" fill="#fef3c7" opacity="0.25">
+                        <animate attributeName="opacity" values="0.25;0.1;0.25" dur="2s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="-30" cy="82" r="1.2" fill="#fef3c7" opacity="0.18" />
+                    <circle cx="-70" cy="70" r="1" fill="#fef3c7" opacity="0.12" />
+                    <circle cx="-100" cy="95" r="0.8" fill="#fef3c7" opacity="0.08" />
+                </g>
+
+                <!-- Front headlight source -->
+                <rect x="42" y="70" width="10" height="16" rx="3" fill="#fffbeb" opacity="0.95" />
+                <rect x="42" y="70" width="10" height="16" rx="3" fill="#fff" opacity="0.5">
+                    <animate attributeName="opacity" values="0.5;0.8;0.5" dur="2s" repeatCount="indefinite" />
+                </rect>
+                <!-- Headlight glow halo -->
+                <circle cx="47" cy="78" r="16" fill="#f59e0b" opacity="0.2">
+                    <animate attributeName="opacity" values="0.2;0.35;0.2" dur="1.5s" repeatCount="indefinite" />
+                    <animate attributeName="r" values="16;19;16" dur="1.5s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="47" cy="78" r="8" fill="#fef3c7" opacity="0.3" />
+                <!-- Rear details -->
+                <rect x="345" y="75" width="20" height="8" rx="3" fill="#ef4444" opacity="0.7" />
+                <!-- Exhaust glow -->
+                <ellipse id="exhaust-glow" cx="380" cy="95" rx="12" ry="6" fill="#f97316" opacity="0">
+                    <animate attributeName="rx" values="12;18;12" dur="0.3s" repeatCount="indefinite" />
+                </ellipse>
+                <!-- Side panels and vents -->
+                <path d="M80 85 L 100 70 L 300 70 L 330 85" fill="none" stroke="#1e293b" stroke-width="1" />
+                <line x1="150" y1="80" x2="160" y2="80" stroke="#334155" stroke-width="1" />
+                <line x1="170" y1="80" x2="180" y2="80" stroke="#334155" stroke-width="1" />
+                <line x1="190" y1="80" x2="200" y2="80" stroke="#334155" stroke-width="1" />
+                <!-- Front wheel -->
+                <circle cx="110" cy="110" r="22" fill="#1a1a1a" stroke="#333" stroke-width="2" />
+                <circle cx="110" cy="110" r="14" fill="#111" />
+                <circle cx="110" cy="110" r="4" fill="#444" />
+                <!-- Rear wheel -->
+                <circle cx="310" cy="110" r="22" fill="#1a1a1a" stroke="#333" stroke-width="2" />
+                <circle cx="310" cy="110" r="14" fill="#111" />
+                <circle cx="310" cy="110" r="4" fill="#444" />
+                <!-- Fin -->
+                <path d="M330 40 L 345 20 L 350 40" fill="#0a0a0a" stroke="#1a1a1a" stroke-width="0.5" />
+                <!-- Bat emblem on hood -->
+                <path d="M152 45 Q157 40 162 45 L165 50 Q160 47 157 47 Q154 47 149 50 Z" fill="#f59e0b" opacity="0.6" />
+            </svg>
+        </div>
+
+        <!-- Bat-Signal Info Stations -->
+        <div id="content-container">
+
+            <!-- Station 1 -->
+            <div class="bat-signal-station" id="st-1">
+                <div class="spotlight-beam"></div>
+                <div class="bat-signal-circle">
+                    <svg class="bat-signal-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="100" r="95" fill="none" stroke="rgba(255,255,255,0.15)"
+                            stroke-width="1.5" />
+                        <circle cx="100" cy="100" r="85" fill="rgba(255, 255, 255, 0.03)" />
+                        <path class="bat-symbol"
+                            d="M100 55 Q85 50 75 60 Q65 70 55 65 Q50 80 55 90 Q45 85 40 95 Q50 110 65 105 Q70 120 80 130 Q90 140 100 135 Q110 140 120 130 Q130 120 135 105 Q150 110 160 95 Q155 85 145 90 Q150 80 145 65 Q135 70 125 60 Q115 50 100 55Z"
+                            fill="rgba(255,255,255,0.7)" />
+                    </svg>
+                    <div class="signal-text">
+                        <div class="signal-badge">01</div>
+                        <h2>I AM THE KNIGHT</h2>
+                        <p>Lập trình viên chuyên trị các hệ thống phức tạp với <strong>Node.js, React.js và
+                                MySQL</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Station 2 -->
+            <div class="bat-signal-station" id="st-2">
+                <div class="spotlight-beam"></div>
+                <div class="bat-signal-circle">
+                    <svg class="bat-signal-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="100" r="95" fill="none" stroke="rgba(255,255,255,0.15)"
+                            stroke-width="1.5" />
+                        <circle cx="100" cy="100" r="85" fill="rgba(255, 255, 255, 0.03)" />
+                        <path class="bat-symbol"
+                            d="M100 55 Q85 50 75 60 Q65 70 55 65 Q50 80 55 90 Q45 85 40 95 Q50 110 65 105 Q70 120 80 130 Q90 140 100 135 Q110 140 120 130 Q130 120 135 105 Q150 110 160 95 Q155 85 145 90 Q150 80 145 65 Q135 70 125 60 Q115 50 100 55Z"
+                            fill="rgba(255,255,255,0.7)" />
+                    </svg>
+                    <div class="signal-text">
+                        <div class="signal-badge">02</div>
+                        <h2>EXPERIENCE</h2>
+                        <p><strong>Wayne Enterprises:</strong> Senior Dev<br><strong>GCPD Tech Unit:</strong> Fullstack
+                            Developer</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Station 3 -->
+            <div class="bat-signal-station" id="st-3">
+                <div class="spotlight-beam"></div>
+                <div class="bat-signal-circle">
+                    <svg class="bat-signal-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="100" r="95" fill="none" stroke="rgba(255,255,255,0.15)"
+                            stroke-width="1.5" />
+                        <circle cx="100" cy="100" r="85" fill="rgba(255, 255, 255, 0.03)" />
+                        <path class="bat-symbol"
+                            d="M100 55 Q85 50 75 60 Q65 70 55 65 Q50 80 55 90 Q45 85 40 95 Q50 110 65 105 Q70 120 80 130 Q90 140 100 135 Q110 140 120 130 Q130 120 135 105 Q150 110 160 95 Q155 85 145 90 Q150 80 145 65 Q135 70 125 60 Q115 50 100 55Z"
+                            fill="rgba(255,255,255,0.7)" />
+                    </svg>
+                    <div class="signal-text">
+                        <div class="signal-badge">03</div>
+                        <h2>BAT-STACK</h2>
+                        <p>Làm chủ <strong>Knex.js</strong> để quản lý dữ liệu, tối ưu hóa với <strong>Nginx</strong> và
+                            <strong>PM2</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll hint -->
+        <div id="scroll-hint">
+            <span>SCROLL DOWN</span>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#f59e0b" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- Music toggle button (outside viewport for click events) -->
+    <button id="music-toggle" title="Toggle Music">
+        <svg id="music-on-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#f59e0b" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+        </svg>
+        <svg id="music-off-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#f59e0b"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+            <line x1="23" y1="9" x2="17" y2="15" />
+            <line x1="17" y1="9" x2="23" y2="15" />
+        </svg>
+    </button>
+
+    <!-- Background music -->
+    <audio id="bg-music" src="The Dark Knight Orchestra Suite (Live).mp3" loop preload="auto"></audio>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
